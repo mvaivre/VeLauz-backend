@@ -16,6 +16,8 @@ def main(global_config, **settings):
     config.add_route('home', '/')
     config.add_view('home', 'velauz:index.html', cache_max_age=3600) #velauz: est le package
     
+    config.add_static_view('lib', 'chsdi:lib/', cache_max_age=datetime.timedelta(days=365))
+    config.add_static_view('style', 'chsdi:style/', cache_max_age=datetime.timedelta(days=365))
 
     config.scan()
     return config.make_wsgi_app()
