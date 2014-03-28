@@ -1,8 +1,10 @@
 from pyramid.config import Configurator
 from sqlalchemy import engine_from_config
+from sqlalchemy.ext.declarative import declarative_base
 
 from velauz.models import DBSession
 
+Base = declarative_base()
 
 def main(global_config, **settings):
     """ This function returns a Pyramid WSGI application.
@@ -13,11 +15,9 @@ def main(global_config, **settings):
     config = Configurator(settings=settings)
 
     # Static config
+    config.add_static_view('static', 'static', cache_max_age=3600)
     config.add_route('home', '/')
-    config.add_view('home', 'velauz:index.html', cache_max_age=3600) #velauz: est le package
+    config.add_view(route_name='home', renderer='velauz:templates/index.mako') #velauz: est le package
     
-    config.add_static_view('lib', 'chsdi:lib/', cache_max_age=datetime.timedelta(days=365))
-    config.add_static_view('style', 'chsdi:style/', cache_max_age=datetime.timedelta(days=365))
-
     config.scan()
     return config.make_wsgi_app()

@@ -8,12 +8,14 @@ CHANGES = open(os.path.join(here, 'CHANGES.txt')).read()
 
 requires = [
     'pyramid',
+    'psycopg2',
     'SQLAlchemy',
     'transaction',
     'pyramid_tm',
     'pyramid_debugtoolbar',
     'zope.sqlalchemy',
     'waitress',
+    'geojson',
     ]
 
 setup(name='VeLauz',

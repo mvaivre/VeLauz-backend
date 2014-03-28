@@ -1,4 +1,4 @@
-from pyramid.response import Response
+'''from pyramid.response import Response
 from pyramid.view import view_config
 
 from sqlalchemy.exc import DBAPIError
@@ -32,4 +32,4 @@ might be caused by one of the following things:
 After you fix the problem, please restart the Pyramid application to
 try it again.
 """
-
+'''

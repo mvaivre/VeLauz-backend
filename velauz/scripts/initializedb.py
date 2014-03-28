@@ -1,4 +1,4 @@
-import os
+'''import os
 import sys
 import transaction
 
@@ -34,4 +34,4 @@ def main(argv=sys.argv):
     Base.metadata.create_all(engine)
     with transaction.manager:
         model = MyModel(name='one', value=1)
-        DBSession.add(model)
+        DBSession.add(model)'''
