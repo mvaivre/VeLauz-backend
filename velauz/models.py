@@ -4,6 +4,7 @@ from sqlalchemy import (
     ForeignKey,
     Integer,
     Text,
+    create_engine,
     )
 
 from sqlalchemy.ext.declarative import declarative_base
@@ -19,15 +20,15 @@ from zope.sqlalchemy import ZopeTransactionExtension
 DBSession = scoped_session(sessionmaker(extension=ZopeTransactionExtension()))
 Base = declarative_base()
 
+engine = create_engine('postgresql://postgres:password@localhost:5432/VeLauz')
+DBSession.configure(bind=engine)
+Base.metadata.bind = engine
 
-class user(Base):
+class User(Base):
     __tablename__ = 'user'
-    id = Column(Integer, primary_key=True)
-    name = Column(Text)
-    value = Column(Integer)
+    __table_args__ = ({'schema': 'public', 'autoload': True})
+    userID = Column('userID', Integer, primary_key=True)
 
-    def __init__(self, name, value):
-        self.name = name
-        self.value = value
-
-# Index('my_index', MyModel.name, unique=True, mysql_length=255) -> Index ?
+query = DBSession.query(User).all()
+for q in query:
+    print q.userID

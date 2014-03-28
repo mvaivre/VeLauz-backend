@@ -1,23 +1,21 @@
 from pyramid.config import Configurator
-from sqlalchemy import engine_from_config
-from sqlalchemy.ext.declarative import declarative_base
+from pyramid.mako_templating import renderer_factory as mako_renderer_factory
 
-from velauz.models import DBSession
-
-Base = declarative_base()
 
 def main(global_config, **settings):
     """ This function returns a Pyramid WSGI application.
     """
-    engine = engine_from_config(settings, 'sqlalchemy.')
-    DBSession.configure(bind=engine)
-    Base.metadata.bind = engine
     config = Configurator(settings=settings)
 
-    # Static config
-    config.add_static_view('static', 'static', cache_max_age=3600)
+    config.add_renderer('.html', mako_renderer_factory)
+    config.add_renderer('.js', mako_renderer_factory)
+
+    config.add_static_view('app', 'velauz:static/VeLauz-app')
+
     config.add_route('home', '/')
+
     config.add_view(route_name='home', renderer='velauz:templates/index.mako') #velauz: est le package
-    
+
+    # Static files
     config.scan()
     return config.make_wsgi_app()
