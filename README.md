@@ -12,3 +12,7 @@ While developing
 env/bin/pserve development.ini --reload
 </pre>
 
+To install a new python module, first edit setup.py and then
+<pre>
+env/bin/python setup.py develop
+</pre>
