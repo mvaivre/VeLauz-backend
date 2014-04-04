@@ -27,4 +27,5 @@ velauz/static/pylons.css
 velauz/static/pyramid-small.png
 velauz/static/pyramid.png
 velauz/static/transparent.gif
+velauz/templates/index.mako
 velauz/templates/mytemplate.pt

@@ -14,8 +14,10 @@ def main(global_config, **settings):
 
     config.add_static_view('app', 'velauz:static/VeLauz-app')
 
+    #Routes 
+    config.add_route('login', '/login')
     config.add_route('home', '/')
-    config.add_route('toto', '/service')
+    config.add_route('test', '/service')
 
     config.add_view(route_name='home', renderer='velauz:templates/index.mako') #velauz: est le package
     # Static files
