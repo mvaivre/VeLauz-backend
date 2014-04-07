@@ -1,4 +1,5 @@
 import os
+import multiprocessing
 
 from setuptools import setup, find_packages
 
@@ -41,6 +42,5 @@ setup(name='VeLauz',
       [paste.app_factory]
       main = velauz:main
       [console_scripts]
-      initialize_VeLauz_db = velauz.scripts.initializedb:main
       """,
       )
